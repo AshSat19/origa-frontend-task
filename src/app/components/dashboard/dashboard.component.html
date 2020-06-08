@@ -1,0 +1,135 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mt-5">
+            <mat-card class="card-content">
+                <mat-card-title class="text-center mb-2 mat-display-1">
+                    Users' Geographic Distribution
+                </mat-card-title>
+                <mat-progress-spinner
+                    *ngIf="isChartLoading"
+                    class="mx-auto mt-3 mb-3"
+                    diameter="75"
+                    strokeWidth="5"
+                    mode="indeterminate"
+                ></mat-progress-spinner>
+                <google-chart 
+                    class="w-100"
+                    [options]="chartOptions"
+                    type="PieChart" 
+                    [data]="chartData"
+                    (ready)="isChartLoading = false;"
+                ></google-chart>
+            </mat-card>
+        </div>
+
+        <div class="col-md-6 mt-5">
+            <mat-card class="card-content">
+                <mat-card-title class="text-center mb-2 mat-display-1">
+                    Fraction of Users fetched
+                </mat-card-title>
+                <h1 class="text-center mat-display-3">
+                    {{ userDataSource.length }} %
+                </h1>
+            </mat-card>
+        </div>
+
+        <div 
+            *ngIf="userDataSource.length > 0" 
+            class="col-md-12 mt-5 mb-5"
+        >
+            <h1 class="text-center mb-2 mat-display-1">
+                Users' Data
+            </h1>
+            <mat-table 
+                [dataSource]="userDataSource" 
+                class="mat-elevation-z4"
+            >
+                <ng-container matColumnDef="id">
+                    <mat-header-cell 
+                        *matHeaderCellDef
+                    > 
+                        No. 
+                    </mat-header-cell>
+                    <mat-cell 
+                        *matCellDef="let element"
+                    > 
+                        {{ element.id }} 
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <mat-header-cell 
+                        *matHeaderCellDef
+                    > 
+                        Name
+                    </mat-header-cell>
+                    <mat-cell 
+                        *matCellDef="let element"
+                    > 
+                        {{ element.name }} 
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="username">
+                    <mat-header-cell 
+                        *matHeaderCellDef
+                    > 
+                        Username
+                    </mat-header-cell>
+                    <mat-cell 
+                        *matCellDef="let element"
+                    > 
+                        {{ element.username }} 
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="city">
+                    <mat-header-cell 
+                        *matHeaderCellDef
+                    > 
+                        City
+                    </mat-header-cell>
+                    <mat-cell 
+                        *matCellDef="let element"
+                    > 
+                        {{ element.city }} 
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="pincode">
+                    <mat-header-cell 
+                        *matHeaderCellDef
+                    > 
+                        Pincode
+                    </mat-header-cell>
+                    <mat-cell 
+                        *matCellDef="let element"
+                    > 
+                        {{ element.pincode }} 
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="companyName">
+                    <mat-header-cell 
+                        *matHeaderCellDef
+                    > 
+                        Company Name
+                    </mat-header-cell>
+                    <mat-cell 
+                        *matCellDef="let element"
+                    > 
+                        {{ element.companyName }} 
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row 
+                    color="primary"
+                    *matHeaderRowDef="userDataTableColumns"
+                ></mat-header-row>
+                <mat-row 
+                    *matRowDef="let row; columns: userDataTableColumns;"
+                ></mat-row>
+            </mat-table>
+        </div>
+    </div>
+</div>

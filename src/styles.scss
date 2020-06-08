@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming'; 
+@include mat-core();
+ 
+$primary-light: mat-palette($mat-indigo);
+$accent-light:  mat-palette($mat-pink, A200, A100, A400);
+$light-theme: mat-light-theme($primary-light, $accent-light);
+ 
+@include angular-material-theme($light-theme);
+
+$primary-dark: mat-palette($mat-purple);
+$accent-dark:  mat-palette($mat-green, A200, A100, A400);
+$dark-theme: mat-dark-theme($primary-dark, $accent-dark);
+
+.dark {
+    @include angular-material-theme($dark-theme);
+}
+
+html, body { 
+    height: 100%;
+}
+
+body { 
+    margin: 0; 
+}
+
+* {
+    font-family: Lato, "Helvetica Neue", sans-serif !important;
+    outline: none !important;
+}
+
+.material-icons {
+    font-family: 'Material Icons' !important;
+}

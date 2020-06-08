@@ -1,0 +1,14 @@
+.card-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 500px;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+}
+
+mat-header-cell, mat-cell, mat-header-row, mat-row {
+    text-align: center;
+}
